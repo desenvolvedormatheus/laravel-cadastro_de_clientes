@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Venda;
 use Illuminate\Http\Request;
+use App\Models\Venda;
 
 class VendasController extends Controller
 {
@@ -12,7 +12,11 @@ class VendasController extends Controller
      */
     public function index()
     {
-        //
+        $cont = Venda::count();
+        $vendas = Venda::all();
+
+        return view('dashboard', ["vendas" => $vendas, 'count' => $cont]);
+
     }
 
     /**
