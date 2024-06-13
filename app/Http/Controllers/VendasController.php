@@ -13,13 +13,18 @@ class VendasController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vendas = Venda::where('user_id', Auth::id())->paginate(7);
+        $busca = $request->input('busca');
+
+        $vendas = Venda::where('user_id', Auth::id())->when($busca, function ($query, $busca) {
+            return $query->where('cliente_nome', 'like', '%' . $busca . '%');
+        })->paginate(7);
+
         $tipoPlanos = TipoPlano::all();
         $planos = Plano::all();
 
-        return view('dashboard',compact('vendas', 'tipoPlanos', 'planos'));
+        return view('dashboard', compact('vendas', 'tipoPlanos', 'planos', 'busca'));
 
     }
 

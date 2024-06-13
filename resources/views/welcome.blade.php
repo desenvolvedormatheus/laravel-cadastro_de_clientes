@@ -15,9 +15,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
-    <div class="bg-white">
-        <div class="py-24 mx-auto max-w-7xl sm:px-6 sm:py-32 lg:px-8">
+<body class="font-sans antialiased bg-gray-950">
+        <div class="py-24 mx-auto sm:px-6 sm:py-32 lg:px-8">
             <div
                 class="relative px-6 pt-16 overflow-hidden bg-gray-900 shadow-2xl isolate sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                 <svg viewBox="0 0 1024 1024"
@@ -38,23 +37,20 @@
                     <p class="mt-6 text-lg leading-8 text-gray-300">Register and consult your sales easily and
                         efficiently.</p>
                     <div class="flex items-center justify-center mt-10 gap-x-6 lg:justify-start">
-                        <header class="flex align-items-center">
-                            <div class="flex">
-                                @if (Route::has('login'))
-                                    <livewire:welcome.navigation />
-                                @endif
-                            </div>
-                        </header>
                     </div>
+                <div class="flex">
+                    @if (Route::has('login'))
+                        <livewire:welcome.navigation />
+                    @endif
+                </div>
                 </div>
                 <div class="relative mt-16 h-80 lg:mt-8">
                     <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-                        src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+                        src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9c5e180e-dcbb-483a-a1ab-f584b89f97be%2Fbcd5e727-b8d3-4ef3-8c19-fe4d9c4a44e7%2Fwelcome.png?table=block&id=a8b9709c-7b7b-47a9-b42a-0b9ce0d2f53c&spaceId=9c5e180e-dcbb-483a-a1ab-f584b89f97be&width=2000&userId=bf26322a-6e31-44d6-9ef3-265c0d6e8282&cache=v2"
                         alt="App screenshot" width="1824" height="1080">
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

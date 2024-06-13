@@ -18,12 +18,11 @@ return new class extends Migration
             $table->date('data_contratacao');
             $table->float('valor_venda');
             $table->integer('tipo_plano');
-            $table->unsignedBigInteger('user_id');
+            $table->Integer('user_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
     }
 
     /**
