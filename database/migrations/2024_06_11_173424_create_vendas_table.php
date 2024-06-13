@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->text('cliente_nome');
-            $table->text('plano_saude');
+            $table->integer('plano_saude');
             $table->date('data_contratacao');
-            $table->integer('valor_venda');
+            $table->float('valor_venda');
+            $table->integer('tipo_plano');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

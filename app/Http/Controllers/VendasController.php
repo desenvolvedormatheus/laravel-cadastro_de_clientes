@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Venda;
+use App\Models\TipoPlano;
+use App\Models\Plano;
+use Illuminate\Support\Facades\Auth;
 
 class VendasController extends Controller
 {
@@ -12,10 +15,11 @@ class VendasController extends Controller
      */
     public function index()
     {
-        $cont = Venda::count();
-        $vendas = Venda::all();
+        $vendas = Venda::where('user_id', Auth::id())->paginate(7);
+        $tipoPlanos = TipoPlano::all();
+        $planos = Plano::all();
 
-        return view('dashboard', ["vendas" => $vendas, 'count' => $cont]);
+        return view('dashboard',compact('vendas', 'tipoPlanos', 'planos'));
 
     }
 
@@ -24,7 +28,9 @@ class VendasController extends Controller
      */
     public function create()
     {
-        //
+        $tipoPlanos = TipoPlano::all();
+        $planos = Plano::all();
+        return view('vendas.create', compact('tipoPlanos', 'planos'));
     }
 
     /**
@@ -36,7 +42,8 @@ class VendasController extends Controller
             'cliente_nome' => 'required',
             'plano_saude' => 'required',
             'data_contratacao' => 'required|date',
-            'valor_venda' => 'required|boolean',
+            'valor_venda' => 'required|numeric',
+            'tipo_plano' => 'required|exists:tipo_planos,id'
         ]);
 
         $venda = new Venda();
@@ -44,16 +51,17 @@ class VendasController extends Controller
         $venda->plano_saude = $request->input('plano_saude');
         $venda->data_contratacao = $request->input('data_contratacao');
         $venda->valor_venda = $request->input('valor_venda');
+        $venda->tipo_plano = $request->input('tipo_plano');
         $venda->user_id = Auth::id(); // Define o user_id como o ID do usuário autenticado
         $venda->save();
 
-        return redirect()->route('vendas.index')->with('success', 'Venda criada com sucesso!');
+        return redirect()->route('dashboard')->with('success', 'Venda criada com sucesso!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(vendas $vendas)
+    public function show()
     {
         //
     }
@@ -61,7 +69,7 @@ class VendasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(vendas $vendas)
+    public function edit()
     {
         //
     }
@@ -69,7 +77,7 @@ class VendasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, vendas $vendas)
+    public function update(Request $request, )
     {
         //
     }
@@ -77,7 +85,7 @@ class VendasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(vendas $vendas)
+    public function destroy()
     {
         //
     }
