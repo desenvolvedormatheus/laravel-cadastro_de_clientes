@@ -22,7 +22,7 @@ class VendasSeeder extends Seeder
                 'data_contratacao' => $faker->date,
                 'valor_venda' => $faker->randomFloat(2, 100, 1000),
                 'tipo_plano' => $faker->randomElement([1, 2, 3, 4, 5]),
-                'user_id' => $faker->randomElement(range(1, 2)),
+                'user_id' => $faker->randomElement(range(1, 3)),
             ]);
         }
     }
