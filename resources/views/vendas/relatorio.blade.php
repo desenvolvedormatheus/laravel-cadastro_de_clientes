@@ -83,6 +83,53 @@
             <div class="pagination">
                 {{ $vendas->links() }}
             </div>
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <div class="container mx-auto">
+                            <div class="flex items-start justify-between">
+                                <h1 class="mb-6 text-3xl font-bold text-center">Vendas Por mês</h1>
+                            </div>
+                            <div class="mt-4 overflow-hidden bg-white rounded-lg shadow-md">
+                                <canvas id="graficoVendasPorMes" width="800" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <script>
+        // Obter os dados dos meses e das vendas do PHP
+        var meses = {!! json_encode($totalVendasPorMes->pluck('mes')) !!};
+        var vendasPorMes = {!! json_encode($totalVendasPorMes->pluck('total_vendas')) !!};
+
+        meses = meses.map(function(mesNum) {
+            var mesDate = new Date('2024-' + mesNum + '-01');
+            return mesDate.toLocaleString('pt-BR', { month: 'long' });
+        });
+
+        // Configurar o gráfico
+        var ctx = document.getElementById('graficoVendasPorMes').getContext('2d');
+        var graficoVendas = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Valor',
+                    data: vendasPorMes,
+                    backgroundColor: 'rgba(31, 41, 55, 0.9)', // Cor de fundo das barras
+                    borderColor: 'rgba(31, 41, 55)', // Cor da borda das barras
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </x-app-layout>
