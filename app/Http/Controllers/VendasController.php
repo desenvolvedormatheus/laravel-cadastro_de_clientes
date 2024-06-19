@@ -30,7 +30,6 @@ class VendasController extends Controller
         $planos = Plano::all();
 
         return view('vendas.listagem', compact('vendas', 'tipoPlanos', 'planos', 'busca'));
-
     }
 
     /**
@@ -99,6 +98,57 @@ class VendasController extends Controller
         $venda->update($request->all());
 
         return redirect()->route('listagem')->with('success', 'Venda atualizada com sucesso!');
+    }
+
+    /**
+     * return a report with filters.
+     */
+    public function analitic(Request $request)
+    {
+        $mes = $request->input('mes');
+        $ano = $request->input('ano');
+        $plano = $request->input('plano');
+        $tipoPlano = $request->input('tipo_plano');
+
+        $vendas = Venda::where('user_id', Auth::id())
+            ->when($mes, function ($query, $mes) {
+                return $query->whereMonth('data_contratacao', $mes);
+            })
+            ->when($ano, function ($query, $ano) {
+                return $query->whereYear('data_contratacao', $ano);
+            })
+            ->when($plano, function ($query, $plano) {
+                return $query->where('plano_saude', $plano);
+            })
+            ->when($tipoPlano, function ($query, $tipoPlano) {
+                return $query->where('tipo_plano', $tipoPlano);
+            })
+            ->orderBy('data_contratacao', 'asc')
+            ->paginate(10);
+
+        $totalVendas = Venda::where('user_id', Auth::id())
+            ->when($mes, function ($query, $mes) {
+                return $query->whereMonth('data_contratacao', $mes);
+            })
+            ->when($ano, function ($query, $ano) {
+                return $query->whereYear('data_contratacao', $ano);
+            })
+            ->when($plano, function ($query, $plano) {
+                return $query->where('plano_saude', $plano);
+            })
+            ->when($tipoPlano, function ($query, $tipoPlano) {
+                return $query->where('tipo_plano', $tipoPlano);
+            })
+            ->sum('valor_venda');
+
+        foreach ($vendas as $venda) {
+            $venda->data_contratacao = Carbon::parse($venda->data_contratacao)->format('d/m/Y');
+        }
+
+        $tipoPlanos = TipoPlano::all();
+        $planos = Plano::all();
+
+        return view('vendas.relatorio', compact('vendas', 'mes', 'ano', 'plano', 'tipoPlano', 'planos', 'tipoPlanos', 'totalVendas'));
     }
 
     /**

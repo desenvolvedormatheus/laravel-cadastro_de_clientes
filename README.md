@@ -89,3 +89,10 @@ Certifique-se de que as seguintes dependências estão presentes em seu `compose
     "vite": "^5.0"
 }
 ```
+##### use a seed para criar os tipos de planos e planos
+
+```
+php artisan db:seed --class=PlanosSeeder
+
+php artisan db:seed --class=TipoPlanoSeeder
+```
