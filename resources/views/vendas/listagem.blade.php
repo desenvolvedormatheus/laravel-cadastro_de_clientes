@@ -15,13 +15,13 @@
             <div class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container mx-auto">
-                        <form method="GET" action="{{ route('dashboard') }}">
+                        <form method="GET" action="{{ route('listagem') }}">
                             <div class="flex items-start justify-between">
                                 <h1 class="mb-6 text-3xl font-bold text-center">Vendas</h1>
                                 <div>
                                     <input type="text" name="busca" placeholder="Nome" class="px-4 py-2 border rounded-md text-blue-950">
                                     <button type="submit" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Buscar</button>
-                                    <a href="{{ route('dashboard') }}" class="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Limpar busca</a>
+                                    <a href="{{ route('listagem') }}" class="rounded-md px-3.5 py-2.5 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Limpar busca</a>
                                 </div>
                             </div>
                         </form>

@@ -6,8 +6,12 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', [VendasController::class, 'index'])->name('dashboard');
+    Route::get('listagem', [VendasController::class, 'index'])->name('listagem');
     Route::resource('vendas', VendasController::class)->except(['show']);
+});
+
+Route::get('dashboard', function(){
+    return "dashboard?";
 });
 
 Route::view('profile', 'profile')->middleware(['auth'])->name('profile');

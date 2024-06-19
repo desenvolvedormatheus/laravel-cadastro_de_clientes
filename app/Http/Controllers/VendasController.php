@@ -15,7 +15,7 @@ class VendasController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {   
+    {
         $busca = $request->input('busca');
 
         $vendas = Venda::where('user_id', Auth::id())->when($busca, function ($query, $busca) {
@@ -29,7 +29,7 @@ class VendasController extends Controller
         $tipoPlanos = TipoPlano::all();
         $planos = Plano::all();
 
-        return view('dashboard', compact('vendas', 'tipoPlanos', 'planos', 'busca'));
+        return view('vendas.listagem', compact('vendas', 'tipoPlanos', 'planos', 'busca'));
 
     }
 
@@ -65,7 +65,7 @@ class VendasController extends Controller
         $venda->user_id = Auth::id(); // Define o user_id como o ID do usuário autenticado
         $venda->save();
 
-        return redirect()->route('dashboard')->with('success', 'Venda criada com sucesso!');
+        return redirect()->route('listagem')->with('success', 'Venda criada com sucesso!');
     }
 
     /**
@@ -98,7 +98,7 @@ class VendasController extends Controller
 
         $venda->update($request->all());
 
-        return redirect()->route('dashboard')->with('success', 'Venda atualizada com sucesso!');
+        return redirect()->route('listagem')->with('success', 'Venda atualizada com sucesso!');
     }
 
     /**
@@ -110,9 +110,9 @@ class VendasController extends Controller
 
         if ($venda) {
             $venda->delete();
-            return redirect()->route('dashboard')->with('success', 'Venda excluída com sucesso!');
+            return redirect()->route('listagem')->with('success', 'Venda excluída com sucesso!');
         }
 
-        return redirect()->route('dashboard')->with('error', 'Venda não encontrada.');
+        return redirect()->route('listagem')->with('error', 'Venda não encontrada.');
     }
 }
