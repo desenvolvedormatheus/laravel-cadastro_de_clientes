@@ -141,11 +141,6 @@ class VendasController extends Controller
             })
             ->sum('valor_venda');
 
-        $totalVendasPorMes = Venda::selectRaw('MONTH(data_contratacao) as mes, SUM(valor_venda) as total_vendas')
-            ->where('user_id', Auth::id())
-            ->groupBy('mes')
-            ->get();
-
         foreach ($vendas as $venda) {
             $venda->data_contratacao = Carbon::parse($venda->data_contratacao)->format('d/m/Y');
         }
@@ -153,7 +148,7 @@ class VendasController extends Controller
         $tipoPlanos = TipoPlano::all();
         $planos = Plano::all();
 
-        return view('vendas.relatorio', compact('vendas', 'mes', 'ano', 'plano', 'tipoPlano', 'planos', 'tipoPlanos', 'totalVendas', 'totalVendasPorMes'));
+        return view('vendas.relatorio', compact('vendas', 'mes', 'ano', 'plano', 'tipoPlano', 'planos', 'tipoPlanos', 'totalVendas'));
     }
 
     /**

@@ -58,11 +58,11 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="pagination">
+                            {{ $vendas->links() }}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="pagination">
-                {{ $vendas->links() }}
             </div>
         </div>
     </div>
