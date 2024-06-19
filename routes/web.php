@@ -10,10 +10,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('vendas', VendasController::class)->except(['show']);
 });
 
-Route::get('dashboard', function(){
-    return "dashboard?";
-});
-
 Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
 
 require __DIR__.'/auth.php';
