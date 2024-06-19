@@ -11,7 +11,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('store') }}">
+                    <form method="POST" action="{{ route('vendas.store') }}">
                         @csrf
                         <div class="mb-4">
                             <label for="cliente_nome" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome do cliente</label>

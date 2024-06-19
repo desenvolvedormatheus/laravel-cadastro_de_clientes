@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="flex justify-end mb-4">
-                <a href="{{ route('create') }}"
+                <a href="{{ route('vendas.create') }}"
                     class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
                     Cadastrar Venda
                 </a>
@@ -46,8 +46,8 @@
                                             <td class="px-6 py-3 text-left">{{ $venda->data_contratacao }}</td>
                                             <td class="px-6 py-3 text-left">R$ {{ number_format($venda->valor_venda, 2, ',', '.') }}</td>
                                             <td class="px-6 py-3 text-left">
-                                                <a href="{{ route('edit', $venda->id) }}" class="px-4 py-2 text-sm font-semibold text-white bg-gray-800 rounded-md hover:bg-blue-600">Atualizar</a>
-                                                <form action="{{ route('destroy', $venda->id) }}" method="POST" style="display:inline;">
+                                                <a href="{{ route('vendas.edit', $venda->id) }}" class="px-4 py-2 text-sm font-semibold text-white bg-gray-800 rounded-md hover:bg-blue-600">Atualizar</a>
+                                                <form action="{{ route('vendas.destroy', $venda->id) }}" method="POST" style="display:inline;">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="px-4 py-2 text-sm font-semibold text-white bg-red-900 rounded-md hover:bg-red-600" onclick="return confirm('Tem certeza que deseja apagar esta venda?')">Apagar</button>
