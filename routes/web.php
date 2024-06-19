@@ -14,8 +14,20 @@ Route::get('create', [VendasController::class, 'create'])
 ->name('create');
 
 Route::post('store', [VendasController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('store');
+->middleware(['auth', 'verified'])
+->name('store');
+
+Route::get('edit/{id}', [VendasController::class, 'edit'])
+->middleware(['auth', 'verified'])
+->name('edit');
+
+Route::put('update/{id}', [VendasController::class, 'update'])
+->middleware(['auth', 'verified'])
+->name('update');
+
+Route::delete('destroy/{id}', [VendasController::class, 'destroy'])
+->middleware(['auth', 'verified'])
+->name('destroy');
 
 Route::view('profile', 'profile')->middleware(['auth'])->name('profile');
 

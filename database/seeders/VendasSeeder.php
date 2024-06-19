@@ -18,10 +18,10 @@ class VendasSeeder extends Seeder
         foreach (range(1, 30) as $index) {
             Venda::create([
                 'cliente_nome' => $faker->name,
-                'plano_saude' => $faker->randomElement([1, 2, 3, 4, 5]),
+                'plano_saude' => $faker->randomElement([1, 2, 3, 4, 5, 6]),
                 'data_contratacao' => $faker->date,
                 'valor_venda' => $faker->randomFloat(2, 100, 1000),
-                'tipo_plano' => $faker->randomElement([1, 2, 3, 4, 5]),
+                'tipo_plano' => $faker->randomElement([1, 2]),
                 'user_id' => $faker->randomElement(range(1, 3)),
             ]);
         }

@@ -34,16 +34,25 @@
                                         <th class="px-6 py-3 text-left"> Tipo de plano</th>
                                         <th class="px-6 py-3 text-left"> Data de contratação</th>
                                         <th class="px-6 py-3 text-left"> Valor da venda</th>
+                                        <th class="px-6 py-3 text-left"> Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-sm font-light text-gray-600">
+                                <tbody class="text-sm font-light text-gray-950">
                                     @foreach ($vendas as $venda)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                                             <td class="px-6 py-3 text-left capitalize">{{ $venda->cliente_nome }}</td>
                                             <td class="px-6 py-3 text-left capitalize">{{ $planos->firstWhere('id', $venda->plano_saude)->nome }}</td>
-                                            <td class="px-6 py-3 text-left capitalize"> {{ $tipoPlanos->firstWhere('id', $venda->tipo_plano)->nome }}</td>
+                                            <td class="px-6 py-3 text-left capitalize">{{ $tipoPlanos->firstWhere('id', $venda->tipo_plano)->nome }}</td>
                                             <td class="px-6 py-3 text-left">{{ $venda->data_contratacao }}</td>
                                             <td class="px-6 py-3 text-left">R$ {{ number_format($venda->valor_venda, 2, ',', '.') }}</td>
+                                            <td class="px-6 py-3 text-left">
+                                                <a href="{{ route('edit', $venda->id) }}" class="px-4 py-2 text-sm font-semibold text-white bg-gray-800 rounded-md hover:bg-blue-600">Atualizar</a>
+                                                <form action="{{ route('destroy', $venda->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="px-4 py-2 text-sm font-semibold text-white bg-red-900 rounded-md hover:bg-red-600" onclick="return confirm('Tem certeza que deseja apagar esta venda?')">Apagar</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

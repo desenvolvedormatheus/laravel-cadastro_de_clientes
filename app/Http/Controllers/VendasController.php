@@ -7,6 +7,7 @@ use App\Models\Venda;
 use App\Models\TipoPlano;
 use App\Models\Plano;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class VendasController extends Controller
 {
@@ -14,12 +15,16 @@ class VendasController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-    {
+    {   
         $busca = $request->input('busca');
 
         $vendas = Venda::where('user_id', Auth::id())->when($busca, function ($query, $busca) {
             return $query->where('cliente_nome', 'like', '%' . $busca . '%');
-        })->paginate(7);
+        })->orderBy('created_at', 'desc')->paginate(7);
+
+        foreach ($vendas as $venda) {
+            $venda->data_contratacao = Carbon::parse($venda->data_contratacao)->format('d/m/Y');
+        }
 
         $tipoPlanos = TipoPlano::all();
         $planos = Plano::all();
@@ -74,24 +79,40 @@ class VendasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit($id)
     {
-        //
+        $tipoPlanos = TipoPlano::all();
+        $planos = Plano::all();
+
+        $venda = Venda::find($id);
+
+        return view('vendas.edit', compact('venda', "planos", "tipoPlanos"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, )
+    public function update(Request $request, $id)
     {
-        //
+        $venda = Venda::find($id);
+
+        $venda->update($request->all());
+
+        return redirect()->route('dashboard')->with('success', 'Venda atualizada com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy($id)
     {
-        //
+        $venda = Venda::find($id);
+
+        if ($venda) {
+            $venda->delete();
+            return redirect()->route('dashboard')->with('success', 'Venda excluída com sucesso!');
+        }
+
+        return redirect()->route('dashboard')->with('error', 'Venda não encontrada.');
     }
 }

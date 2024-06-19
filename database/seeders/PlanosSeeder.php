@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Plano;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class PlanosSeeder extends Seeder
 {
@@ -13,11 +12,11 @@ class PlanosSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        $lista = ["HBC Top plus", "MedTour", "AMIL", "HBC Salute", "Unimed", "Intermédica Notredame", "Mutuaide"];
 
-        foreach (range(1, 5) as $index) {
+        for ($i=0; $i < ( sizeof($lista)) ; $i++) {
             Plano::create([
-                'nome' => $faker->name,
+                'nome' => $lista[$i],
             ]);
         }
     }

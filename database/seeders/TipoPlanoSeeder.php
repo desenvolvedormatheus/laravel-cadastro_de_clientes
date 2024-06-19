@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\TipoPlano;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class TipoPlanoSeeder extends Seeder
 {
@@ -13,11 +12,11 @@ class TipoPlanoSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create();
+        $lista = ["Empresarial", "Individual"];
 
-        foreach (range(1, 5) as $index) {
+        for ($i=0; $i < ( sizeof($lista)) ; $i++) {
             TipoPlano::create([
-                'nome' => $faker->name,
+                'nome' => $lista[$i],
             ]);
         }
     }
