@@ -4,8 +4,8 @@
 Primeiro, clone o repositório do projeto para a nova máquina:
 
 ```sh
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/desenvolvedormatheus/laravel-cadastro_de_clientes.git
+cd laravel-cadastro_de_clientes
 ```
 
 ### 2. Instalar PHP e Composer
