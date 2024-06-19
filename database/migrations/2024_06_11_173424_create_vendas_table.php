@@ -21,7 +21,8 @@ return new class extends Migration
             $table->Integer('user_id');
             $table->timestamps();
 
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // comente esta linha caso for usar a seed
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

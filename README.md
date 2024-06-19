@@ -92,6 +92,15 @@ Certifique-se de que as seguintes dependências estão presentes em seu `compose
 
 ### Caso queira popular seu banco tem uma seed pronta
 
+# comente esta linha caso for usar a seed
+
+```
+$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+```
+
+Está no arquivo *database/migrations/2024_06_11_173424_create_vendas_table.php*
+
+
 ```sh
 php artisan db:seed
 ```
