@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
             $table->text('cliente_nome');
-            $table->integer('plano_saude');
+            $table->unsignedBigInteger('plano_saude');
             $table->date('data_contratacao');
             $table->float('valor_venda');
-            $table->integer('tipo_plano');
-            $table->Integer('user_id');
+            $table->unsignedBigInteger('tipo_plano');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            // comente esta linha caso for usar a seed
+            $table->foreign('plano_saude')->references('id')->on('planos')->onDelete('cascade');
+            $table->foreign('tipo_plano')->references('id')->on('tipo_planos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
