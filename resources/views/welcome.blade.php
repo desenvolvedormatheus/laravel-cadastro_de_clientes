@@ -46,7 +46,7 @@
                 </div>
                 <div class="relative mt-16 h-80 lg:mt-8">
                     <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
-                        src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9c5e180e-dcbb-483a-a1ab-f584b89f97be%2Fbcd5e727-b8d3-4ef3-8c19-fe4d9c4a44e7%2Fwelcome.png?table=block&id=a8b9709c-7b7b-47a9-b42a-0b9ce0d2f53c&spaceId=9c5e180e-dcbb-483a-a1ab-f584b89f97be&width=2000&userId=bf26322a-6e31-44d6-9ef3-265c0d6e8282&cache=v2"
+                        src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9c5e180e-dcbb-483a-a1ab-f584b89f97be%2F5e5a62a4-c95d-45a3-9e66-4af5395ac666%2FOpera_Instantneo_2024-06-22_142121_127.0.0.1.png?id=a8b9709c-7b7b-47a9-b42a-0b9ce0d2f53c&table=block&spaceId=9c5e180e-dcbb-483a-a1ab-f584b89f97be&width=2000&userId=bf26322a-6e31-44d6-9ef3-265c0d6e8282&cache=v2"
                         alt="App screenshot" width="1824" height="1080">
                 </div>
             </div>
