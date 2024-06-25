@@ -5,8 +5,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="container mx-auto">
                         <form method="GET" action="{{ route('analitico') }}">
-                            <div class="flex items-start justify-between">
-                                <h1 class="mb-6 text-3xl font-bold text-center">Relatório de Vendas</h1>
+                            <div class="flex items-start justify-end">
                                 <div>
                                     <select id="ano" name="ano" class="py-2 border rounded-md text-blue-950">
                                         <option value="">Todos os anos</option>
@@ -47,6 +46,8 @@
                                     </select>
                                     <button type="submit"
                                         class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Filtrar</button>
+                                    <button type="reset" onclick="window.location.href='{{ route('analitico') }}'"
+                                        class="rounded-md bg-red-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Limpar</button>
                                 </div>
                             </div>
                         </form>
@@ -77,7 +78,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="pagination">
+                        <div class="mt-4 pagination">
                             {{ $vendas->links() }}
                         </div>
                         <div class="mt-4 text-right">

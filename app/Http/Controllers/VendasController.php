@@ -124,7 +124,7 @@ class VendasController extends Controller
                 return $query->where('tipo_plano', $tipoPlano);
             })
             ->orderBy('data_contratacao', 'asc')
-            ->paginate(10);
+            ->paginate(7);
 
         $totalVendas = Venda::where('user_id', Auth::id())
             ->when($mes, function ($query, $mes) {
